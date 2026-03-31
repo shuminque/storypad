@@ -9,6 +9,7 @@ const String kAppName = String.fromEnvironment('APP_NAME');
 const String kRevenueCatAndroidApiKey = String.fromEnvironment('REVENUE_CAT_ANDROID_API_KEY');
 const String kRevenueCatIosApiKey = String.fromEnvironment('REVENUE_CAT_IOS_API_KEY');
 const String kEmailHasherSecreyKey = String.fromEnvironment('EMAIL_HASHER_SECRET_KEY');
+const bool kOfflineMode = String.fromEnvironment('OFFLINE_MODE') == 'yes';
 
 const bool kIsCupertino = String.fromEnvironment('CUPERTINO') == 'yes';
 
@@ -20,8 +21,9 @@ const FontWeight kDefaultFontWeight = FontWeight.normal;
 const FontWeight kTitleDefaultFontWeight = FontWeight.w500;
 
 final bool kIAPEnabled =
-    (Platform.isAndroid && kRevenueCatAndroidApiKey.trim().isNotEmpty) ||
-    (Platform.isIOS && kRevenueCatIosApiKey.trim().isNotEmpty);
+    !kOfflineMode &&
+    ((Platform.isAndroid && kRevenueCatAndroidApiKey.trim().isNotEmpty) ||
+        (Platform.isIOS && kRevenueCatIosApiKey.trim().isNotEmpty));
 
 final bool kSupportCamera = Platform.isAndroid || Platform.isIOS;
 

@@ -45,6 +45,9 @@ For easy setup and running, the GoogleService-Info.plist, google-services.json, 
 
 ```s
 flutter run --flavor community --dart-define-from-file=configs/community.json --target=lib/main_community.dart
+
+# optional: fully local/offline mode (no remote config, crashlytics, firestore asset bootstrap, IAP)
+flutter run --flavor community --dart-define-from-file=configs/offline.example.json --target=lib/main_community.dart
 ```
 
 ## 🛠 <StoryPad> Project Overview
