@@ -108,12 +108,13 @@ class SideItems {
         onTap: (context) => ArchivesRoute(pathType: .bins).push(context),
       ),
       CustomSideItem.divider(),
-      CustomSideItem.custom(
-        builder: (context) {
-          return BackupTile(onNavigate: (BaseRoute route) => route.push(context));
-        },
-      ),
-      CustomSideItem.divider(),
+      if (!kOfflineMode)
+        CustomSideItem.custom(
+          builder: (context) {
+            return BackupTile(onNavigate: (BaseRoute route) => route.push(context));
+          },
+        ),
+      if (!kOfflineMode) CustomSideItem.divider(),
       if (kIAPEnabled)
         ListTileSideItem(
           title: tr('page.add_ons.title'),
@@ -134,19 +135,21 @@ class SideItems {
         icon: const Icon(SpIcons.setting),
         onTap: (context) => SettingsRoute().push(context),
       ),
-      if (kIAPEnabled) CustomSideItem.divider(),
-      ListTileSideItem(
-        title: tr('page.community.title'),
-        subtitle: null,
-        icon: const Icon(SpIcons.forum),
-        onTap: (context) => CommunityRoute().push(context),
-      ),
-      ListTileSideItem(
-        title: tr('list_tile.rate.title'),
-        subtitle: null,
-        icon: const Icon(SpIcons.star),
-        onTap: (context) => AppStoreOpenerService.call(),
-      ),
+      if (kIAPEnabled || !kOfflineMode) CustomSideItem.divider(),
+      if (!kOfflineMode)
+        ListTileSideItem(
+          title: tr('page.community.title'),
+          subtitle: null,
+          icon: const Icon(SpIcons.forum),
+          onTap: (context) => CommunityRoute().push(context),
+        ),
+      if (!kOfflineMode)
+        ListTileSideItem(
+          title: tr('list_tile.rate.title'),
+          subtitle: null,
+          icon: const Icon(SpIcons.star),
+          onTap: (context) => AppStoreOpenerService.call(),
+        ),
       ListTileSideItem(
         title: tr('list_tile.share_app.title'),
         subtitle: tr('list_tile.share_app.subtitle'),

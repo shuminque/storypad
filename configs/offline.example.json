@@ -1,0 +1,7 @@
+{
+  "APP_NAME": "StoryPad Offline",
+  "OFFLINE_MODE": "yes",
+  "REVENUE_CAT_ANDROID_API_KEY": "",
+  "REVENUE_CAT_IOS_API_KEY": "",
+  "EMAIL_HASHER_SECRET_KEY": ""
+}
